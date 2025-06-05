@@ -1,0 +1,226 @@
+body {
+    overflow-x: hidden;
+}
+
+.standards-section,
+.standards-section-2x2,
+.standards-section-3col {
+    margin: 16px auto 60px auto;
+    /* từ 40px → 16px */
+    padding: 0 20px 60px 20px;
+    background: #1c5292;
+    border-radius: 18px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Các class layout */
+.standards-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1300px;
+}
+
+.standards-section-2x2 {
+    display: grid;
+    grid-template-areas:
+        "img longcard"
+        "img longcard"
+        "card1 card1"
+        "card2 card2"
+        "card3 card3"
+        "card4 card4"
+        "card5 card5"
+        "card6 card6"
+        "card7 card7"
+        "card8 card8"
+        "card9 card9"
+        "card10 card10";
+    grid-template-columns: 1.2fr 1.8fr;
+    grid-template-rows: repeat(2, 180px) repeat(10, minmax(90px, auto));
+    max-width: 1000px;
+}
+
+.standards-section-3col {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, minmax(110px, auto));
+    gap: 28px;
+    max-width: 1300px;
+    align-items: stretch;
+}
+
+/* Card ảnh */
+.standards-img-card {
+    grid-area: img;
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+    height: 100%;
+    /* QUAN TRỌNG: tự động lấy đúng chiều cao từ grid */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+
+
+/* Tiêu đề */
+.standards-title {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 700px;
+    /* Cho phép rộng hơn */
+    text-align: center;
+    font-size: 2.4rem;
+    /* Tăng cỡ chữ */
+    font-weight: bold;
+    color: #1c5292;
+    z-index: 2;
+    line-height: 1.3;
+    padding: 0 16px;
+    white-space: normal;
+    word-break: break-word;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.25);
+}
+
+
+
+
+/* Ảnh trong card */
+.standards-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    z-index: 1;
+}
+
+/* Card dài */
+.standards-longcard,
+.standards-widecard {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 18px 12px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 1.12rem;
+    color: #1c5292;
+    font-weight: 500;
+    min-height: 70px;
+    border: 4px solid #1c5292;
+    transition: box-shadow 0.2s;
+}
+
+.standards-widecard {
+    grid-column: span 2;
+}
+
+.standards-longcard:hover,
+.standards-widecard:hover {
+    box-shadow: 0 8px 24px rgba(28, 82, 146, 0.18);
+}
+
+/* Card nhỏ */
+.standards-item,
+.standards-hiv-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 1.15rem;
+    color: #1c5292;
+    font-weight: 600;
+    min-height: 70px;
+    border: 4px solid #1c5292;
+    align-self: stretch;
+    height: 100%;
+}
+
+.standards-item {
+    grid-column: span 2;
+}
+
+.standards-hiv-card {
+    grid-column: 5 / span 2;
+    grid-row: 1 / span 2;
+}
+
+/* Icon */
+.standards-icon,
+.standards-item img,
+.standards-item svg,
+.standards-item .icon,
+.standards-longcard img,
+.standards-widecard img {
+    width: 44px;
+    height: 44px;
+    font-size: 2.3rem;
+    margin-bottom: 8px;
+    align-self: flex-start;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+
+    .standards-section,
+    .standards-section-2x2,
+    .standards-section-3col {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto;
+        padding: 0 4px 60px 4px;
+        margin-bottom: 40px;
+    }
+
+    .standards-section-2x2 {
+        grid-template-areas:
+            "img"
+            "longcard"
+            "card1"
+            "card2"
+            "card3"
+            "card4"
+            "card5"
+            "card6"
+            "card7"
+            "card8"
+            "card9"
+            "card10";
+    }
+
+    .standards-img-card {
+        min-height: 180px;
+    }
+
+    .standards-title {
+        font-size: 1.4rem;
+        top: 12px;
+        padding: 4px 10px;
+    }
+
+    .standards-widecard,
+    .standards-longcard,
+    .standards-item {
+        font-size: 1rem;
+        min-height: 80px;
+    }
+}
