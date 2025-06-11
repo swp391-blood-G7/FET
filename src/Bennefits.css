@@ -107,39 +107,59 @@
 }
 
 .benefit-slide {
-    transition: transform 0.35s cubic-bezier(.4, 1.6, .6, 1);
-    will-change: transform;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    will-change: transform, opacity;
 }
 
-.benefit-slide.slide-left {
-    animation: slideLeft 0.35s forwards;
+.benefit-slide.current {
+    z-index: 2;
 }
 
-.benefit-slide.slide-right {
-    animation: slideRight 0.35s forwards;
+.benefit-slide.next {
+    z-index: 3;
 }
 
-@keyframes slideLeft {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+/* Slide hiện tại chạy ra */
+.slide-out-left {
+    transform: translateX(-100%);
+    opacity: 0;
+}
 
-    100% {
+.slide-out-right {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+/* Slide mới chạy vào */
+.slide-in-left {
+    animation: slideInFromLeft 0.35s forwards;
+}
+
+.slide-in-right {
+    animation: slideInFromRight 0.35s forwards;
+}
+
+@keyframes slideInFromLeft {
+    from {
         transform: translateX(-100%);
         opacity: 0;
     }
-}
 
-@keyframes slideRight {
-    0% {
+    to {
         transform: translateX(0);
         opacity: 1;
     }
+}
 
-    100% {
+@keyframes slideInFromRight {
+    from {
         transform: translateX(100%);
         opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
 
@@ -153,7 +173,7 @@
     position: absolute;
     left: 0;
     bottom: 24px;
-    z-index: 3;
+    z-index: 4;
 }
 
 .benefit-arrow {
@@ -177,4 +197,17 @@
     font-size: 1.08rem;
     color: #fff;
     font-weight: 500;
+}
+
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }

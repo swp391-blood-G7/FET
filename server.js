@@ -15,7 +15,7 @@ const config = {
     user: 'sa',
     password: '12345',
     server: 'localhost',
-    database: 'BloodDB',
+    database: 'SWP',
     options: {
         trustServerCertificate: true,
     }
@@ -23,19 +23,19 @@ const config = {
 
 // API đăng nhập
 app.post('/api/login', async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password_hash } = req.body;
 
     try {
         await sql.connect(config);
 
-        // Dùng prepared statement tránh SQL Injection
         const result = await sql.query`
-            SELECT * FROM dbo.Account 
-            WHERE gmail = ${email} AND password = ${password}
+            SELECT full_name FROM dbo.Users
+            WHERE email = ${email} AND password_hash = ${password_hash}
         `;
 
         if (result.recordset.length > 0) {
-            res.json({ success: true, message: 'Đăng nhập thành công' });
+            const user = result.recordset[0];
+            res.json({ success: true, full_name: user.full_name });
         } else {
             res.json({ success: false, message: 'Sai email hoặc mật khẩu' });
         }
@@ -43,7 +43,7 @@ app.post('/api/login', async (req, res) => {
         console.error('Lỗi SQL:', err);
         res.status(500).json({ success: false, message: 'Lỗi server' });
     } finally {
-        await sql.close(); // luôn đóng kết nối
+        await sql.close();
     }
 });
 
