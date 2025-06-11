@@ -9,6 +9,7 @@ import Login from './Login';
 import './App.css';
 import ContactForm from "./ContactForm";
 
+// Component trang
 function Home() {
   return (
     <>
@@ -28,21 +29,45 @@ function DangKyNhanMau() { return <h1>Đăng ký nhận máu</h1>; }
 function LienHe() { return <ContactForm />; }
 function NotFound() { return <h2>404 - Không tìm thấy trang</h2>; }
 
+// Admin
+function NguoiDung() { return <h1>Quản lý Người dùng (Admin)</h1>; }
+function PhanCong() { return <h1>Phân công (Admin)</h1>; }
+function TongKet() { return <h1>Tổng kết (Admin)</h1>; }
+function QuanLyLichHienMau() { return <h1>Quản lý lịch hiến máu (Admin)</h1>; }
+
+// Staff
+function CongViec() { return <h1>Công việc</h1>; }
+function QuanLyHienMau() { return <h1>Quản lý hiến máu</h1>; }
+function QuanLyNhanMau() { return <h1>Quản lý nhận máu</h1>; }
+function NganHangMau() { return <h1>Ngân hàng máu</h1>; }
+
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState({ email: '', full_name: '' });
+  const [userInfo, setUserInfo] = useState({ email: '', full_name: '', role: '' });
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+
+  // Load user info từ localStorage nếu có
+  useEffect(() => {
+    const storedUser = localStorage.getItem('userInfo');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUserInfo(parsedUser);
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   function handleLoginSuccess(user) {
     setIsLoggedIn(true);
     setUserInfo(user);
+    localStorage.setItem('userInfo', JSON.stringify(user));
   }
 
   function handleLogout() {
     setIsLoggedIn(false);
-    setUserInfo({ email: '', full_name: '' });
+    setUserInfo({ email: '', full_name: '', role: '' });
     setShowDropdown(false);
+    localStorage.removeItem('userInfo');
   }
 
   useEffect(() => {
@@ -57,29 +82,85 @@ export default function App() {
     };
   }, []);
 
+  // Menu theo role
+  const menuByRole = {
+    member: [
+      { to: "/lich-su", label: "LỊCH SỬ ĐẶT HẸN" },
+      { to: "/lich-hen", label: "LỊCH HẸN CỦA BẠN" },
+      { to: "/dang-ky-hien-mau", label: "ĐĂNG KÝ HIẾN MÁU" },
+      { to: "/dang-ky-nhan-mau", label: "ĐĂNG KÝ NHẬN MÁU" },
+      { to: "/hoi-dap", label: "HỎI – ĐÁP" },
+      { to: "/lien-he", label: "LIÊN HỆ" },
+    ],
+    admin: [
+      { to: "/nguoi-dung", label: "NGƯỜI DÙNG" },
+      { to: "/phan-cong", label: "PHÂN CÔNG" },
+      { to: "/tong-ket", label: "TỔNG KẾT" },
+      { to: "/quan-ly-lich-hien-mau", label: "QUẢN LÝ LỊCH HIẾN MÁU" },
+    ],
+    staff: [
+      { to: "/cong-viec", label: "CÔNG VIỆC" },
+      { to: "/quan-ly-hien-mau", label: "QUẢN LÝ HIẾN MÁU" },
+      { to: "/quan-ly-nhan-mau", label: "QUẢN LÝ NHẬN MÁU" },
+      { to: "/ngan-hang-mau", label: "NGÂN HÀNG MÁU" },
+    ]
+  };
+
+  // Routes theo role
+  const routesByRole = {
+    member: (
+      <>
+        <Route path="/lich-su" element={<LichSu />} />
+        <Route path="/lich-hen" element={<LichHen />} />
+        <Route path="/dang-ky-hien-mau" element={<DangKyHienMau />} />
+        <Route path="/dang-ky-nhan-mau" element={<DangKyNhanMau />} />
+        <Route path="/hoi-dap" element={<HoiDap />} />
+        <Route path="/lien-he" element={<LienHe />} />
+      </>
+    ),
+    admin: (
+      <>
+        <Route path="/nguoi-dung" element={<NguoiDung />} />
+        <Route path="/phan-cong" element={<PhanCong />} />
+        <Route path="/tong-ket" element={<TongKet />} />
+        <Route path="/quan-ly-lich-hien-mau" element={<QuanLyLichHienMau />} />
+      </>
+    ),
+    staff: (
+      <>
+        <Route path="/cong-viec" element={<CongViec />} />
+        <Route path="/quan-ly-hien-mau" element={<QuanLyHienMau />} />
+        <Route path="/quan-ly-nhan-mau" element={<QuanLyNhanMau />} />
+        <Route path="/ngan-hang-mau" element={<NganHangMau />} />
+      </>
+    )
+  };
+
+  const userRole = userInfo.role;
+
   return (
     <div className="app-root">
       <header>
         <div className="navbar">
           <img src="/picture/logo.png" alt="Logo" className="logo" />
           <nav>
-            <NavLink to="/" end className={({ isActive }) => isActive ? "active" : ""}>Trang chủ</NavLink>
+            <NavLink to="/" end className={({ isActive }) => isActive ? "active" : ""}>TRANG CHỦ</NavLink>
 
-            {isLoggedIn && (
+            {!isLoggedIn && (
               <>
-                <NavLink to="/lich-su" className={({ isActive }) => isActive ? "active" : ""}>Lịch sử đặt hẹn</NavLink>
-                <NavLink to="/lich-hen" className={({ isActive }) => isActive ? "active" : ""}>Lịch hẹn của bạn</NavLink>
-                <NavLink to="/dang-ky-hien-mau" className={({ isActive }) => isActive ? "active" : ""}>Đăng ký hiến máu</NavLink>
-                <NavLink to="/dang-ky-nhan-mau" className={({ isActive }) => isActive ? "active" : ""}>Đăng ký nhận máu</NavLink>
+                <NavLink to="/hoi-dap" className={({ isActive }) => isActive ? "active" : ""}>HỎI – ĐÁP</NavLink>
+                <NavLink to="/lien-he" className={({ isActive }) => isActive ? "active" : ""}>LIÊN HỆ</NavLink>
               </>
             )}
 
-            <NavLink to="/hoi-dap" className={({ isActive }) => isActive ? "active" : ""}>Hỏi – Đáp</NavLink>
-            <NavLink to="/thong-bao" className={({ isActive }) => isActive ? "active" : ""}>Thông báo</NavLink>
-            <NavLink to="/lien-he" className={({ isActive }) => isActive ? "active" : ""}>Liên hệ</NavLink>
+            {isLoggedIn && menuByRole[userRole]?.map(({ to, label }) => (
+              <NavLink key={to} to={to} className={({ isActive }) => isActive ? "active" : ""}>
+                {label}
+              </NavLink>
+            ))}
 
             {!isLoggedIn ? (
-              <NavLink to="/login">Đăng nhập</NavLink>
+              <NavLink to="/login">ĐĂNG NHẬP</NavLink>
             ) : (
               <div className="user-dropdown" ref={dropdownRef}>
                 <div className="user-info" onClick={() => setShowDropdown(!showDropdown)}>
@@ -104,17 +185,9 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          {isLoggedIn && (
-            <>
-              <Route path="/lich-su" element={<LichSu />} />
-              <Route path="/lich-hen" element={<LichHen />} />
-              <Route path="/dang-ky-hien-mau" element={<DangKyHienMau />} />
-              <Route path="/dang-ky-nhan-mau" element={<DangKyNhanMau />} />
-            </>
-          )}
           <Route path="/hoi-dap" element={<HoiDap />} />
-          <Route path="/thong-bao" element={<ThongBao />} />
           <Route path="/lien-he" element={<LienHe />} />
+          {isLoggedIn && routesByRole[userRole]}
           <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

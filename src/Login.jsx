@@ -1,4 +1,3 @@
-// Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
@@ -23,7 +22,7 @@ function Login({ onLoginSuccess }) {
 
       if (data.success) {
         alert('Đăng nhập thành công!');
-        onLoginSuccess({ email, full_name: data.full_name });
+        onLoginSuccess({ email, full_name: data.full_name, role: data.role });
         navigate('/');
       } else {
         alert('Sai email hoặc mật khẩu!');

@@ -1,3 +1,8 @@
+/* Luôn hiện thanh cuộn dọc (vertical scrollbar) */
+html {
+  overflow-y: scroll;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -30,10 +35,14 @@ nav {
   align-items: center;
 }
 
+/* --- PHẦN MỚI: CHUYỂN MENU VÀ DROPDOWN SANG CHỮ HOA --- */
 nav a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 15px;
+  /* thêm dòng này */
 }
 
 .btn {
@@ -248,6 +257,7 @@ main {
   color: white;
 }
 
+/* Chuyển chữ user info, dropdown thành chữ hoa */
 .user-info {
   display: flex;
   align-items: center;
@@ -255,6 +265,8 @@ main {
   background-color: #004080;
   padding: 6px 10px;
   border-radius: 20px;
+  text-transform: uppercase;
+  /* thêm dòng này */
 }
 
 .user-circle {
@@ -291,6 +303,8 @@ main {
   display: flex;
   flex-direction: column;
   padding: 6px 0;
+  text-transform: uppercase;
+  /* thêm dòng này */
 }
 
 .dropdown-menu.new-style .dropdown-item {
