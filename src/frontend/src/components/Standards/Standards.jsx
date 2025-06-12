@@ -1,5 +1,5 @@
 import React from 'react';
-import './Standards.css';
+import styles from './Standards.module.css'; // Import styles từ CSS Module
 import { FaWeight, FaUserCheck, FaIdCard, FaBan, FaHeartbeat, FaClock, FaTint, FaVial, FaVirus } from 'react-icons/fa';
 
 const standardsList = [
@@ -13,14 +13,17 @@ const standardsList = [
     { icon: <FaVial />, text: 'Kết quả test nhanh âm tính với kháng nguyên bề mặt của siêu vi B' },
     { icon: <FaVirus />, text: 'Không mắc hoặc không có hành vi nguy cơ lây nhiễm HIV, không nhiễm viêm gan B, viêm gan C, và các virus lây qua đường truyền máu' }
 ];
+
 function Standards() {
     return (
-        <div className="standards-wrapper">
-            <h2 className="standards-title">Tiêu chuẩn hiến máu</h2>
-            <div className="standards-container">
+        // Sử dụng 'styles' để truy cập các class CSS
+        <div className={styles['standards-wrapper']}>
+            <h2 className={styles['standards-title']}>Tiêu chuẩn hiến máu</h2>
+            <div className={styles['standards-container']}>
                 {standardsList.map((item, index) => (
-                    <div key={index} className="standards-box">
-                        <div className="icon">{item.icon}</div>
+                    <div key={index} className={styles['standards-box']}>
+                        {/* Lưu ý: class 'icon' nằm bên trong standards-box, cần được truy cập qua styles */}
+                        <div className={styles.icon}>{item.icon}</div>
                         <p>{item.text}</p>
                     </div>
                 ))}

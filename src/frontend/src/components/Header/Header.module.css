@@ -1,0 +1,106 @@
+/* src/frontend/src/components/Header/Header.module.css */
+.header {
+    background-color: #003366;
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    /* margin-right: 40px; */
+}
+
+/* Base style cho NavLink, áp dụng cho tất cả NavLink trong Header */
+.header nav a {
+    /* Sử dụng .header nav a để chỉ áp dụng cho nav của Header */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 15px;
+}
+
+.activeLink {
+    /* Tên class riêng cho NavLink active */
+    color: #fff;
+    font-weight: bold;
+    border-bottom: 3px solid #fff;
+    padding-bottom: 3px;
+    transition: border-bottom 0.2s;
+}
+
+.userDropdown {
+    position: relative;
+    cursor: pointer;
+    color: white;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #004080;
+    padding: 6px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.userCircle {
+    background-color: #ffffff;
+    color: #003366;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.userName {
+    font-weight: bold;
+}
+
+.dropdownArrow {
+    font-size: 0.8rem;
+}
+
+.dropdownMenu {
+    /* Đổi tên class để tránh trùng với .new-style trong App.css cũ */
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    color: #003366;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 6px 0;
+    text-transform: uppercase;
+}
+
+.dropdownItem {
+    padding: 10px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 0.95rem;
+    cursor: pointer;
+    color: #003366;
+}
+
+.dropdownItem:hover {
+    background-color: #f0f0f0;
+}

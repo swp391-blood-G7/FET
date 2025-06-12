@@ -1,8 +1,9 @@
-import './Bennefits.css';
-import benefitImg from '../picture/benefit.png';
+// src/frontend/src/components/Bennefits/Bennefits.jsx
 import { useState, useEffect, useRef } from 'react';
+import styles from './Bennefits.module.css'; // Đảm bảo import đúng cách
+import benefitImg from '../../assets/images/benefit.png'; // Đường dẫn ảnh đi lên 2 cấp
 
-const AUTO_SLIDE_INTERVAL = 4000; // 4 giây
+const AUTO_SLIDE_INTERVAL = 3000; // 3S giây
 
 const pages = [
     {
@@ -90,34 +91,35 @@ export default function Bennefits() {
     };
 
     return (
-        <section className="benefit-section">
-            <div className="benefit-card">
-                <img src={benefitImg} alt="Quyền lợi của người hiến máu" className="benefit-img" />
-                <h2 className="benefit-title">Quyền lợi của người hiến máu</h2>
+        <section className={styles['benefit-section']}> {/* Sửa: className={styles['benefit-section']} */}
+            <div className={styles['benefit-card']}> {/* Sửa: className={styles['benefit-card']} */}
+                <img src={benefitImg} alt="Quyền lợi của người hiến máu" className={styles['benefit-img']} /> {/* Sửa: className={styles['benefit-img']} */}
+                <h2 className={styles['benefit-title']}>Quyền lợi của người hiến máu</h2> {/* Sửa: className={styles['benefit-title']} */}
             </div>
             <div
-                className="benefit-card benefit-content-card"
+                className={`${styles['benefit-card']} ${styles['benefit-content-card']}`} // Sửa: className={`${styles['benefit-card']} ${styles['benefit-content-card']}`}
                 onMouseDown={handleDragStart}
                 onMouseUp={handleDragEnd}
                 onTouchStart={handleDragStart}
                 onTouchEnd={handleDragEnd}
+                // Giữ style inline cho các thuộc tính dynamic hoặc ít thay đổi
                 style={{ cursor: 'grab', userSelect: 'none', position: 'relative', overflow: 'hidden' }}
             >
                 <div
-                    className={`benefit-slide${animating ? (direction === 1 ? ' slide-left' : ' slide-right') : ''}`}
+                    className={`${styles['benefit-slide']}${animating ? (direction === 1 ? ` ${styles['slide-out-left']}` : ` ${styles['slide-out-right']}`) : ''}`} // Sửa: className={`${styles['benefit-slide']}`} và thêm animation classes
                     key={page}
                 >
-                    <h3 className="benefit-content-title">{pages[page].title}</h3>
-                    <ul className="benefit-list">
+                    <h3 className={styles['benefit-content-title']}>{pages[page].title}</h3> {/* Sửa: className={styles['benefit-content-title']} */}
+                    <ul className={styles['benefit-list']}> {/* Sửa: className={styles['benefit-list']} */}
                         {pages[page].items.map((item, idx) =>
                             typeof item === 'string' ? (
                                 <li key={idx}>{item}</li>
                             ) : (
                                 <li key={idx} style={{ listStyle: 'none', paddingLeft: 0 }}>
                                     {item.label}
-                                    <ul className="benefit-sub-list">
+                                    <ul className={styles['benefit-sub-list']}> {/* Sửa: className={styles['benefit-sub-list']} */}
                                         {item.sub.map((sub, subIdx) => (
-                                            <li key={subIdx} className="benefit-sub-item">{sub}</li>
+                                            <li key={subIdx} className={styles['benefit-sub-item']}>{sub}</li>
                                         ))}
                                     </ul>
                                 </li>
@@ -125,14 +127,14 @@ export default function Bennefits() {
                         )}
                     </ul>
                 </div>
-                <div className="benefit-nav">
+                <div className={styles['benefit-nav']}> {/* Sửa: className={styles['benefit-nav']} */}
                     <button
-                        className="benefit-arrow"
+                        className={styles['benefit-arrow']} // Sửa: className={styles['benefit-arrow']}
                         onClick={() => handleSlide(-1)}
                         aria-label="Trang trước"
                     >&#8592;</button>
                     <button
-                        className="benefit-arrow"
+                        className={styles['benefit-arrow']}
                         onClick={() => handleSlide(1)}
                         aria-label="Trang sau"
                     >&#8594;</button>

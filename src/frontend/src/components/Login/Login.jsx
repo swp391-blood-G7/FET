@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
-import './Login.css';
+import styles from './Login.module.css'; // Import styles từ CSS Module
 
 function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
@@ -34,14 +34,15 @@ function Login({ onLoginSuccess }) {
   };
 
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
+    // Sử dụng 'styles' để truy cập các class CSS
+    <div className={styles['login-container']}>
+      <form className={styles['login-form']} onSubmit={handleSubmit}>
         <h2>Đăng nhập</h2>
 
-        <div className="form-group">
+        <div className={styles['form-group']}>
           <label>Email:</label>
-          <div className="input-wrapper">
-            <FaEnvelope className="input-icon" />
+          <div className={styles['input-wrapper']}>
+            <FaEnvelope className={styles['input-icon']} />
             <input
               type="email"
               value={email}
@@ -52,10 +53,10 @@ function Login({ onLoginSuccess }) {
           </div>
         </div>
 
-        <div className="form-group">
+        <div className={styles['form-group']}>
           <label>Mật khẩu:</label>
-          <div className="input-wrapper">
-            <FaLock className="input-icon" />
+          <div className={styles['input-wrapper']}>
+            <FaLock className={styles['input-icon']} />
             <input
               type="password"
               value={password_hash}
@@ -66,7 +67,7 @@ function Login({ onLoginSuccess }) {
           </div>
         </div>
 
-        <button className="btn-login" type="submit">Đăng nhập</button>
+        <button className={styles['btn-login']} type="submit">Đăng nhập</button>
       </form>
     </div>
   );

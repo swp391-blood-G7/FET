@@ -1,3 +1,4 @@
+/* src/frontend/src/App.css */
 /* Luôn hiện thanh cuộn dọc (vertical scrollbar) */
 html {
   overflow-y: scroll;
@@ -61,7 +62,8 @@ nav a {
   align-items: center;
   text-align: center;
   padding: 40px 20px;
-  background: url('picture/bhead.jpg') no-repeat center center/cover;
+  /* Đã đổi đường dẫn ảnh */
+  background: url("./assets/images/bhead.jpg") no-repeat center center/cover;
   position: relative;
   height: 300px;
   max-width: 100vw;
@@ -116,7 +118,8 @@ nav a {
 }
 
 .card.left {
-  background: url('picture/benefit.png') center center/cover no-repeat;
+  /* Đã đổi đường dẫn ảnh */
+  background: url("./assets/images/benefit.png") center center/cover no-repeat;
   color: #fff;
   position: relative;
 }

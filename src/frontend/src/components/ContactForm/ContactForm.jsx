@@ -1,10 +1,11 @@
 import React from 'react';
-import './ContactForm.css'; // Nếu bạn muốn styling giống ảnh
+import styles from './ContactForm.module.css'; // Thay đổi cách import
 
 export default function ContactForm() {
   return (
-    <div className="contact-container">
-      <div className="contact-left">
+    // Sử dụng 'styles' để truy cập các class CSS
+    <div className={styles['contact-container']}>
+      <div className={styles['contact-left']}>
         <h2>Liên hệ</h2>
         <p><strong>Email:</strong> blooddonation259@gmail.com</p>
 
@@ -23,7 +24,7 @@ export default function ContactForm() {
         </p>
       </div>
 
-      <div className="contact-right">
+      <div className={styles['contact-right']}>
         <h2>Gửi lời nhắn cho chúng tôi</h2>
         <form>
           <input type="text" placeholder="Vui lòng nhập họ và tên" required />

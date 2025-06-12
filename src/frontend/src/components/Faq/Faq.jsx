@@ -1,4 +1,4 @@
-import './Faq.css';
+import styles from './Faq.module.css'; // Import styles từ CSS Module
 import { useState } from 'react';
 
 const faqData = [
@@ -67,7 +67,7 @@ const faqData = [
       '- Máu có nhiều thành phần, mỗi thành phần chỉ có đời sống nhất định và luôn luôn được đổi mới hằng ngày. Ví dụ: Hồng cầu sống được 120 ngày, huyết tương thường xuyên được thay thế và đổi mới. Cơ sở khoa học cho thấy, nếu mỗi lần hiến dưới 1/10 lượng máu trong cơ thể thì không có hại đến sức khỏe.',
       '- Nhiều công trình nghiên cứu đã chứng minh rằng, sau khi hiến máu, các chỉ số máu có thay đổi chút ít nhưng vẫn nằm trong giới hạn sinh lý bình thường không hề gây ảnh hưởng đến các hoạt động thường ngày của cơ thể.',
       'Cơ sở thực tế:',
-      '- Thực tế đã có hàng triệu người hiến máu nhiều lần mà sức khỏe vẫn hoàn toàn tốt. Trên thế giới có người hiến máu trên 400 lần. Ở Việt Nam, người hiến máu nhiều lần nhất đã hiến gần 100 lần, sức khỏe hoàn toàn tốt.',
+      '- Thực tế đã có hàng triệu người hiến máu nhiều lần mà sức khỏe vẫn hoàn toàn tốt. Trên thế giới có người hiến máu trên 400 lần. Ở Việt Nam, người hiến máu nhiều lần nhất đã hiến gần 100 lần, sức khỏe hoàn toàn tốt.',
       '- Như vậy, mỗi người nếu thấy sức khoẻ tốt, không có các bệnh lây nhiễm qua đường truyền máu, đạt tiêu chuẩn hiến máu thì có thể hiến máu từ 3-4 lần trong một năm, vừa không ảnh hưởng xấu đến sức khoẻ của bản thân, vừa đảm bảo máu có chất lượng tốt, an toàn cho người bệnh.'
     ]
   },
@@ -161,18 +161,18 @@ const faqData = [
 export default function Faq() {
   const [open, setOpen] = useState(null);
   return (
-    <section className="faq-section">
-      <h2 className="faq-title">Câu hỏi thường gặp về hiến máu</h2>
-      <div className="faq-list">
+    <section className={styles['faq-section']}> {/* Sửa: className={styles['faq-section']} */}
+      <h2 className={styles['faq-title']}>Câu hỏi thường gặp về hiến máu</h2> {/* Sửa: className={styles['faq-title']} */}
+      <div className={styles['faq-list']}> {/* Sửa: className={styles['faq-list']} */}
         {faqData.map((item, idx) => (
-          <div className={`faq-item${open === idx ? ' open' : ''}`} key={idx}>
-            <button className="faq-question" onClick={() => setOpen(open === idx ? null : idx)}>
+          <div className={`${styles['faq-item']}${open === idx ? ` ${styles.open}` : ''}`} key={idx}> {/* Sửa: className={styles['faq-item']} và thêm styles.open */}
+            <button className={styles['faq-question']} onClick={() => setOpen(open === idx ? null : idx)}> {/* Sửa: className={styles['faq-question']} */}
               <span>{item.question}</span>
-              <span className="faq-toggle">{open === idx ? '−' : '+'}</span>
+              <span className={styles['faq-toggle']}>{open === idx ? '−' : '+'}</span> {/* Sửa: className={styles['faq-toggle']} */}
             </button>
-            <div className="faq-answer" style={{ display: open === idx ? 'block' : 'none' }}>
+            <div className={styles['faq-answer']} style={{ display: open === idx ? 'block' : 'none' }}> {/* Sửa: className={styles['faq-answer']} */}
               {item.answer.map((ans, i) => (
-                <div className="faq-answer-line" key={i}>{ans}</div>
+                <div className={styles['faq-answer-line']} key={i}>{ans}</div>
               ))}
             </div>
           </div>
