@@ -1,0 +1,90 @@
+.faq-section {
+    padding: 2rem;
+    /* Tạo khoảng cách bên trong section */
+    max-width: 1200px;
+    /* Giới hạn chiều rộng tối đa */
+    margin: auto;
+    /* Căn giữa phần tử */
+    font-family: Arial, sans-serif;
+    /* Font chữ toàn bộ phần FAQ */
+}
+
+.faq-title {
+    text-align: center;
+    /* Căn giữa tiêu đề */
+    font-size: 2rem;
+    /* Kích thước lớn cho tiêu đề */
+    margin-bottom: 1.5rem;
+    /* Khoảng cách bên dưới tiêu đề */
+    color: #4974a7;
+    /* Màu đỏ đậm cho tiêu đề */
+}
+
+.faq-list {
+    border-top: 1px solid #ddd;
+    /* Đường kẻ phía trên danh sách câu hỏi */
+}
+
+.faq-item {
+    border: 1px solid #d0e2ff;
+    border-radius: 16px;
+    /* Bo tròn mềm hơn */
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+
+.faq-item:hover {
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+
+.faq-question {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    /* Ô to ra */
+    font-size: 1.4rem;
+    /* Tăng cỡ chữ */
+    background: #fff;
+    border: none;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+.faq-item.open .faq-question {
+    background-color: #fff;
+    /* Nền cam nhạt khi câu hỏi được mở */
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    color: #555;
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 2rem 1.5rem;
+    font-size: 1.2rem;
+    color: #333;
+    background-color: #fff;
+    line-height: 1.6;
+}
+
+.faq-answer-line {
+    margin-bottom: 0.5rem;
+    /* Khoảng cách giữa các dòng câu trả lời */
+}
+
+.faq-container {
+    padding: 2rem;
+    background-color: #f8fbfe;
+}

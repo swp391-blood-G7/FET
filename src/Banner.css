@@ -1,0 +1,102 @@
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/picture/bhead.jpg') no-repeat center center/cover;
+    height: 350px;
+    position: relative;
+    color: #fff;
+    text-align: center;
+}
+
+
+
+.date-search-box {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 36px 28px 36px;
+    text-align: left;
+    color: #222;
+    min-width: 650px;
+    /* tăng chiều rộng */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+}
+
+.date-label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+.date-icon {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.date-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-input {
+    padding: 14px 18px;
+    border: 1px solid #cfd8dc;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    width: 210px;
+    /* tăng chiều rộng */
+}
+
+.date-separator {
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.date-search-btn {
+    background: #4285f4;
+    color: #fff;
+    border: none;
+    padding: 14px 18px;
+    /* Đồng bộ với .date-input */
+    border-radius: 8px;
+    /* Hoặc giống input */
+    font-size: 1.15rem;
+    /* Đồng bộ với .date-input */
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: background 0.2s;
+    white-space: nowrap;
+    /* Tránh chữ xuống dòng */
+}
+
+.date-search-btn:hover {
+    background: #3367d6;
+}
+
+/* Đảm bảo popup lịch luôn hiển thị phía dưới input và không bị che */
+.custom-datepicker-popper {
+    z-index: 9999 !important;
+    margin-top: 4px !important;
+}
+
+.custom-datepicker-calendar {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    border-radius: 10px;
+    font-size: 1.08rem;
+}
+
+.custom-datepicker-wrapper {
+    width: 100%;
+}
+
+/* Đảm bảo vùng chứa không che popup */
+.banner,
+.date-search-box,
+.date-input-group {
+    overflow: visible !important;
+    position: static !important;
+}
