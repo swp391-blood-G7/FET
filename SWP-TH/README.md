@@ -1,2 +1,0 @@
-# SWP-TH
-Learning node
