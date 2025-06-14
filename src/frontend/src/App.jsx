@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 
 import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/ContactPage";
@@ -62,6 +63,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/hoi-dap" element={<FaqPage />} />
           <Route path="/lien-he" element={<ContactPage />} />
+          <Route path="/register" element={<Register />} />
 
           {/* Routes cho thành viên */}
           {isLoggedIn && userRole === "member" && (
@@ -95,6 +97,7 @@ export default function App() {
 
           <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
           <Route path="*" element={<NotFoundPage />} />
+          
         </Routes>
       </main>
 

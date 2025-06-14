@@ -70,7 +70,12 @@ export default function Header({ isLoggedIn, userInfo, handleLogout, userRole })
                         ))}
 
                     {!isLoggedIn ? (
-                        <NavLink to="/login">ĐĂNG NHẬP</NavLink>
+                          <>
+                            <NavLink to="/login">ĐĂNG NHẬP</NavLink>
+                            <NavLink to="/register" className="register-button-nav">
+                            ĐĂNG KÝ
+                            </NavLink>
+                        </>
                     ) : (
                         <div className="user-dropdown" ref={dropdownRef}>
                             <div className="user-info" onClick={() => setShowDropdown(!showDropdown)}>
