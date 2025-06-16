@@ -1,9 +1,9 @@
 // src/frontend/src/components/Bennefits/Bennefits.jsx
 import { useState, useEffect, useRef } from 'react';
-import styles from './Bennefits.module.css'; // Đảm bảo import đúng cách
-import benefitImg from '../../assets/images/benefit.png'; // Đường dẫn ảnh đi lên 2 cấp
+import styles from './Bennefits.module.css';
+import benefitImg from '../../assets/images/benefit.png';
 
-const AUTO_SLIDE_INTERVAL = 3000; // 3S giây
+const AUTO_SLIDE_INTERVAL = 5000;
 
 const pages = [
     {
@@ -44,43 +44,32 @@ const pages = [
 
 export default function Bennefits() {
     const [page, setPage] = useState(0);
-    const [animating, setAnimating] = useState(false);
-    const [direction, setDirection] = useState(0); // -1: left, 1: right
     const timeoutRef = useRef();
-    const animTimeoutRef = useRef();
+    const dragState = useRef({ startX: 0, dragging: false });
 
-    // Auto slide effect
     useEffect(() => {
         timeoutRef.current && clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => {
-            handleSlide(1);
+            // Luôn chuyển sang trang tiếp theo theo vòng lặp
+            setPage(p => (p + 1) % pages.length);
         }, AUTO_SLIDE_INTERVAL);
         return () => clearTimeout(timeoutRef.current);
     }, [page]);
 
-    // Slide animation
-    function handleSlide(dir) {
-        if (animating) return;
-        setDirection(dir);
-        setAnimating(true);
-        animTimeoutRef.current && clearTimeout(animTimeoutRef.current);
-        animTimeoutRef.current = setTimeout(() => {
-            setPage(p => {
-                let next = p + dir;
-                if (next < 0) next = pages.length - 1;
-                if (next >= pages.length) next = 0;
-                return next;
-            });
-            setAnimating(false);
-        }, 350);
-    }
+    const handleSlide = dir => {
+        setPage(p => {
+            let next = p + dir;
+            if (next < 0) next = pages.length - 1;
+            if (next >= pages.length) next = 0;
+            return next;
+        });
+    };
 
-    // Kéo chuột để chuyển trang
-    const dragState = useRef({ startX: 0, dragging: false });
     const handleDragStart = e => {
         dragState.current.startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
         dragState.current.dragging = true;
     };
+
     const handleDragEnd = e => {
         if (!dragState.current.dragging) return;
         const endX = e.type === 'touchend' ? (e.changedTouches[0]?.clientX ?? 0) : e.clientX;
@@ -91,53 +80,71 @@ export default function Bennefits() {
     };
 
     return (
-        <section className={styles['benefit-section']}> {/* Sửa: className={styles['benefit-section']} */}
-            <div className={styles['benefit-card']}> {/* Sửa: className={styles['benefit-card']} */}
-                <img src={benefitImg} alt="Quyền lợi của người hiến máu" className={styles['benefit-img']} /> {/* Sửa: className={styles['benefit-img']} */}
-                <h2 className={styles['benefit-title']}>Quyền lợi của người hiến máu</h2> {/* Sửa: className={styles['benefit-title']} */}
+        <section className={styles['benefit-section']}>
+            <div className={styles['benefit-card']}>
+                <img src={benefitImg} alt="Quyền lợi của người hiến máu" className={styles['benefit-img']} />
+                <h2 className={styles['benefit-title']}>Quyền lợi của người hiến máu</h2>
             </div>
             <div
-                className={`${styles['benefit-card']} ${styles['benefit-content-card']}`} // Sửa: className={`${styles['benefit-card']} ${styles['benefit-content-card']}`}
+                className={styles['benefit-content-card']}
                 onMouseDown={handleDragStart}
                 onMouseUp={handleDragEnd}
                 onTouchStart={handleDragStart}
                 onTouchEnd={handleDragEnd}
-                // Giữ style inline cho các thuộc tính dynamic hoặc ít thay đổi
-                style={{ cursor: 'grab', userSelect: 'none', position: 'relative', overflow: 'hidden' }}
             >
-                <div
-                    className={`${styles['benefit-slide']}${animating ? (direction === 1 ? ` ${styles['slide-out-left']}` : ` ${styles['slide-out-right']}`) : ''}`} // Sửa: className={`${styles['benefit-slide']}`} và thêm animation classes
-                    key={page}
-                >
-                    <h3 className={styles['benefit-content-title']}>{pages[page].title}</h3> {/* Sửa: className={styles['benefit-content-title']} */}
-                    <ul className={styles['benefit-list']}> {/* Sửa: className={styles['benefit-list']} */}
-                        {pages[page].items.map((item, idx) =>
-                            typeof item === 'string' ? (
-                                <li key={idx}>{item}</li>
-                            ) : (
-                                <li key={idx} style={{ listStyle: 'none', paddingLeft: 0 }}>
-                                    {item.label}
-                                    <ul className={styles['benefit-sub-list']}> {/* Sửa: className={styles['benefit-sub-list']} */}
-                                        {item.sub.map((sub, subIdx) => (
-                                            <li key={subIdx} className={styles['benefit-sub-item']}>{sub}</li>
-                                        ))}
-                                    </ul>
-                                </li>
-                            )
-                        )}
-                    </ul>
+                <div className={styles['benefit-slide-wrapper']}>
+                    {pages.map((pg, idx) => (
+                        <div
+                            key={idx}
+                            className={styles['benefit-slide']}
+                            style={{
+                                transform:
+                                    idx === page
+                                        ? 'translateX(0%)'
+                                        : idx < page
+                                        ? 'translateX(-100%)'
+                                        : 'translateX(100%)',
+                                opacity: idx === page ? 1 : 0,
+                                zIndex: idx === page ? 2 : 1
+                            }}
+                        >
+                            <h3 className={styles['benefit-content-title']}>{pg.title}</h3>
+                            <ul className={styles['benefit-list']}>
+                                {pg.items.map((item, idx2) =>
+                                    typeof item === 'string' ? (
+                                        <li key={idx2}>{item}</li>
+                                    ) : (
+                                        <li key={idx2} style={{ listStyle: 'none', paddingLeft: 0 }}>
+                                            {item.label}
+                                            <ul className={styles['benefit-sub-list']}>
+                                                {item.sub.map((sub, subIdx) => (
+                                                    <li key={subIdx} className={styles['benefit-sub-item']}>
+                                                        {sub}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </li>
+                                    )
+                                )}
+                            </ul>
+                        </div>
+                    ))}
                 </div>
-                <div className={styles['benefit-nav']}> {/* Sửa: className={styles['benefit-nav']} */}
+                <div className={styles['benefit-nav']}>
                     <button
-                        className={styles['benefit-arrow']} // Sửa: className={styles['benefit-arrow']}
+                        className={styles['benefit-arrow']}
                         onClick={() => handleSlide(-1)}
                         aria-label="Trang trước"
-                    >&#8592;</button>
+                    >
+                        &#8592;
+                    </button>
                     <button
                         className={styles['benefit-arrow']}
                         onClick={() => handleSlide(1)}
                         aria-label="Trang sau"
-                    >&#8594;</button>
+                    >
+                        &#8594;
+                    </button>
                 </div>
             </div>
         </section>

@@ -1,0 +1,107 @@
+/* BloodRegister.module.css */
+
+.container {
+  max-width: 700px;
+  margin: 32px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+}
+
+.title {
+  text-align: center;
+  color: #004080;
+  margin-bottom: 28px;
+  font-size: 2.2em;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.questionGroup {
+  margin-top: 24px;
+  padding-bottom: 16px; /* Giữ padding dưới để tạo khoảng cách */
+  border-bottom: 1px solid #eee; /* Đường kẻ dưới để phân tách câu hỏi */
+  /* Bỏ background-color và color để không có nền xanh và chữ trắng */
+}
+
+.questionGroup:last-of-type {
+  border-bottom: none; /* Không có đường kẻ dưới cho câu hỏi cuối cùng */
+}
+
+.questionText {
+  font-weight: 500; /* Không in đậm (thay vì 600, dùng 500 hoặc normal) */
+  color: #555; /* Màu chữ xám đậm cho câu hỏi */
+  margin-bottom: 12px;
+  font-size: 1.15em; /* Phóng to câu hỏi */
+}
+
+.radioLabel {
+  margin-right: 20px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: #333; /* Đổi màu chữ radio button thành màu đen/xám mặc định */
+}
+
+.radioLabel input[type="radio"] {
+  margin-right: 8px;
+  transform: scale(1.1);
+  accent-color: #004080; /* Màu radio button khi được chọn vẫn là xanh */
+}
+
+.textArea {
+  width: calc(100% - 20px);
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #ddd; /* Border màu xám nhạt */
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1em;
+  resize: vertical;
+  min-height: 80px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff; /* Nền trắng cho textarea */
+  color: #333; /* Màu chữ đen cho textarea */
+}
+
+.fieldset {
+  margin-top: 32px;
+  border: 1px solid #dcdcdc; /* Border màu xám nhạt cho fieldset */
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Nền xám rất nhạt cho fieldset */
+}
+
+.fieldset legend {
+  font-weight: 700;
+  color: #004080;
+  padding: 0 10px;
+  font-size: 1.2em;
+}
+
+.submitButton {
+  margin-top: 32px;
+  padding: 14px 24px;
+  background-color: #004080;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1em;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.submitButton:active {
+  background-color: #003366;
+  transform: translateY(0);
+}

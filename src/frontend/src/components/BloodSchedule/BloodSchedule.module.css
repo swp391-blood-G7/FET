@@ -1,0 +1,84 @@
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 16px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.datePickerBox {
+  background-color: #f0f8ff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.datePickerBox small {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #004080;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.appointmentList {
+  list-style: none;
+  padding-left: 0;
+  font-size: 1.15rem;
+  color: #004080;
+}
+
+.appointmentList li {
+  margin-bottom: 12px;
+  padding-left: 12px;
+  position: relative;
+}
+
+.appointmentList {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.noAppointment {
+  font-style: italic;
+  color: #666;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 12px;
+}
+.appointmentList li {
+  border: 1px solid #004080;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  background-color: #f0f8ff;
+}
+
+.appointmentList li button {
+  background-color: #004080;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.appointmentList li button:hover {
+  background-color: #003060;
+}

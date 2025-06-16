@@ -1,4 +1,3 @@
-/* Quyền lợi của người hiến máu - Card layout */
 .benefit-section {
     display: flex;
     justify-content: center;
@@ -13,30 +12,15 @@
     background: #1c5292;
     border-radius: 16px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    padding: 32px 28px 28px 28px;
+    padding: 32px 28px;
     flex: 1 1 0;
     min-width: 380px;
     max-width: 540px;
-    min-height: 520px;
     height: 520px;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #fff;
-    box-sizing: border-box;
-}
-
-.benefit-card:first-child {
-    width: 100%;
-    height: 100%;
-    min-width: 380px;
-    max-width: 540px;
-    min-height: 520px;
-    height: 520px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -53,16 +37,13 @@
     left: 0;
     right: 0;
     z-index: 2;
-    width: 100%;
     text-shadow: 0 2px 8px rgba(255, 255, 255, 0.25);
-    transform: none;
 }
 
 .benefit-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    margin: 0;
     position: absolute;
     top: 0;
     left: 0;
@@ -70,14 +51,41 @@
 }
 
 .benefit-content-card {
-    align-items: flex-start;
-    justify-content: space-between;
+    background: #1c5292;
+    border-radius: 16px;
+    padding: 32px 28px;
     color: #fff;
     width: 100%;
     min-width: 380px;
     max-width: 540px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.benefit-slide-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.benefit-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.45s ease-in-out, opacity 0.45s ease-in-out;
+    pointer-events: none;
+}
+
+.benefit-slide.active {
+    transform: translateX(0%);
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
 }
 
 .benefit-content-title {
@@ -102,78 +110,29 @@
 
 .benefit-list li {
     margin-bottom: 12px;
-    color: #fff;
     font-size: 1.18rem;
 }
 
-.benefit-slide {
-    transition: transform 0.35s ease, opacity 0.35s ease;
-    will-change: transform, opacity;
+.benefit-sub-list {
+    padding-left: 16px;
+    margin-top: 8px;
+    font-size: 1.1rem;
 }
 
-.benefit-slide.current {
-    z-index: 2;
-}
-
-.benefit-slide.next {
-    z-index: 3;
-}
-
-/* Slide hiện tại chạy ra */
-.slide-out-left {
-    transform: translateX(-100%);
-    opacity: 0;
-}
-
-.slide-out-right {
-    transform: translateX(100%);
-    opacity: 0;
-}
-
-/* Slide mới chạy vào */
-.slide-in-left {
-    animation: slideInFromLeft 0.35s forwards;
-}
-
-.slide-in-right {
-    animation: slideInFromRight 0.35s forwards;
-}
-
-@keyframes slideInFromLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideInFromRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+.benefit-sub-item {
+    margin-bottom: 6px;
 }
 
 .benefit-nav {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: 8px;
-    width: 100%;
     justify-content: center;
     position: absolute;
     left: 0;
     bottom: 24px;
-    z-index: 4;
+    width: 100%;
+    z-index: 10;
 }
 
 .benefit-arrow {
@@ -188,26 +147,6 @@
     transition: background 0.2s;
 }
 
-.benefit-arrow:disabled {
-    background: #b0b0b0;
-    cursor: not-allowed;
-}
-
-.benefit-page {
-    font-size: 1.08rem;
-    color: #fff;
-    font-weight: 500;
-}
-
-
-@keyframes slideInFromRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+.benefit-arrow:hover {
+    background: #0050aa;
 }

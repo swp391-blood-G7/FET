@@ -1,17 +1,28 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'; // Giữ nguyên cho các style cơ bản của React-datepicker
-import viCustom from '../../locales/vi-custom'; // Import locale tùy chỉnh của bạn
-import styles from './Banner.module.css'; // Import CSS Modules
+import 'react-datepicker/dist/react-datepicker.css';
+import viCustom from '../../locales/vi-custom';
+import styles from './Banner.module.css';
 
 export default function Banner() {
   const [from, setFrom] = useState(null);
   const [to, setTo] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Sử dụng 'vi-VN' cho định dạng hiển thị trong alert, không ảnh hưởng đến DatePicker locale
-    alert(`Tìm kiếm từ ${from ? from.toLocaleDateString('vi-VN') : ''} đến ${to ? to.toLocaleDateString('vi-VN') : ''}`);
+    console.log('handleSubmit fired', { from, to });
+
+    if (!from || !to) {
+      alert('Vui lòng chọn đầy đủ ngày từ - đến');
+      return;
+    }
+    const fromStr = from.toISOString().slice(0, 10);
+    const toStr = to.toISOString().slice(0, 10);
+
+    console.log('Navigating to:', `/blood-schedule?from=${fromStr}&to=${toStr}`);
+    navigate(`/blood-schedule?from=${fromStr}&to=${toStr}`);
   };
 
   return (
@@ -30,14 +41,11 @@ export default function Banner() {
             endDate={to}
             placeholderText="Từ ngày"
             className={styles.dateInput}
-            locale={viCustom} // Sử dụng locale tùy chỉnh đã import
+            locale={viCustom}
             dateFormat="dd/MM/yyyy"
             popperPlacement="bottom"
-            popperClassName={styles.customDatepickerPopper}
-            calendarClassName={styles.customDatepickerCalendar}
-            wrapperClassName={styles.customDatepickerWrapper}
           />
-          <span className={styles.dateSeparator}>-</span> {/* Đã sửa dấu nháy đơn thừa từ '-'' thành '-' */}
+          <span className={styles.dateSeparator}>-</span>
           <DatePicker
             selected={to}
             onChange={date => setTo(date)}
@@ -47,12 +55,9 @@ export default function Banner() {
             minDate={from}
             placeholderText="Đến ngày"
             className={styles.dateInput}
-            locale={viCustom} // Sử dụng locale tùy chỉnh đã import
+            locale={viCustom}
             dateFormat="dd/MM/yyyy"
             popperPlacement="bottom"
-            popperClassName={styles.customDatepickerPopper}
-            calendarClassName={styles.customDatepickerCalendar}
-            wrapperClassName={styles.customDatepickerWrapper}
           />
           <button type="submit" className={styles.dateSearchBtn}>Tìm kiếm</button>
         </div>

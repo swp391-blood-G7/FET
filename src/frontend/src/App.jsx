@@ -1,6 +1,7 @@
 // src/frontend/src/App.jsx
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
@@ -14,6 +15,9 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { LichSu, LichHen, DangKyHienMau, DangKyNhanMau } from "./pages/MemberPages";
 import { NguoiDung, PhanCong, TongKet, QuanLyLichHienMau } from "./pages/AdminPages";
 import { CongViec, QuanLyHienMau, QuanLyNhanMau, NganHangMau } from "./pages/StaffPages";
+
+import BloodSchedulePage from "./pages/BloodSchedulePage"; // Trang lịch hiến máu
+import BloodRegisterPage from './pages/BloodRegisterPage';
 
 import "./App.css"; // CSS toàn cục
 
@@ -44,8 +48,6 @@ export default function App() {
   }
 
   const userRole = userInfo.role;
-
-  // Menu và Routes được quản lý bởi component Header và App.jsx
 
   return (
     <div className="app-root">
@@ -92,6 +94,14 @@ export default function App() {
               <Route path="/ngan-hang-mau" element={<NganHangMau />} />
             </>
           )}
+
+          {/* Route chung cho trang lịch hiến máu */}
+          <Route path="/blood-schedule" element={<BloodSchedulePage />} />
+
+          {/* Route cho trang đăng ký hiến máu */}
+          <Route path="/blood-register" element={<BloodRegisterPage />} />
+
+
 
           <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
           <Route path="*" element={<NotFoundPage />} />
