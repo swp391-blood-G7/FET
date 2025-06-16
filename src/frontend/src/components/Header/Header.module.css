@@ -1,4 +1,3 @@
-/* src/frontend/src/components/Header/Header.module.css */
 .header {
     background-color: #003366;
     padding: 10px 20px;
@@ -10,17 +9,15 @@
     align-items: center;
     justify-content: center;
     gap: 40px;
+    flex-wrap: wrap;
 }
 
 .logo {
     width: 50px;
     height: auto;
-    /* margin-right: 40px; */
 }
 
-/* Base style cho NavLink, áp dụng cho tất cả NavLink trong Header */
 .header nav a {
-    /* Sử dụng .header nav a để chỉ áp dụng cho nav của Header */
     color: white;
     text-decoration: none;
     font-weight: bold;
@@ -28,8 +25,8 @@
     margin-right: 15px;
 }
 
-.activeLink {
-    /* Tên class riêng cho NavLink active */
+/* Sửa từ .activeLink → .active cho đúng với React code */
+.active {
     color: #fff;
     font-weight: bold;
     border-bottom: 3px solid #fff;
@@ -75,7 +72,6 @@
 }
 
 .dropdownMenu {
-    /* Đổi tên class để tránh trùng với .new-style trong App.css cũ */
     position: absolute;
     top: 40px;
     right: 0;
@@ -89,6 +85,18 @@
     flex-direction: column;
     padding: 6px 0;
     text-transform: uppercase;
+
+    /* Hiệu ứng dropdown */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdownMenu.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .dropdownItem {

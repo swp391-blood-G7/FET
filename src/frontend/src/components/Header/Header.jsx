@@ -1,8 +1,10 @@
 // src/frontend/src/components/Header.jsx
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../../assets/images/logo.png"; // Đã đổi đường dẫn ảnh
+import logo from "../../assets/images/logo.png";
 import styles from "./Header.module.css";
+import { FaUserCircle } from "react-icons/fa";
+
 export default function Header({ isLoggedIn, userInfo, handleLogout, userRole }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
@@ -21,6 +23,7 @@ export default function Header({ isLoggedIn, userInfo, handleLogout, userRole })
 
     const menuByRole = {
         member: [
+            { to: "/dashboard", label: "TRANG CÁ NHÂN" },
             { to: "/lich-su", label: "LỊCH SỬ ĐẶT HẸN" },
             { to: "/lich-hen", label: "LỊCH HẸN CỦA BẠN" },
             { to: "/dang-ky-hien-mau", label: "ĐĂNG KÝ HIẾN MÁU" },
@@ -43,20 +46,24 @@ export default function Header({ isLoggedIn, userInfo, handleLogout, userRole })
     };
 
     return (
-        <header>
-            <div className="navbar">
-                <img src={logo} alt="Logo" className="logo" />
+        <header className={styles.header}>
+            <div className={styles.navbar}>
+                <img src={logo} alt="Logo" className={styles.logo} />
                 <nav>
-                    <NavLink to="/" end className={({ isActive }) => (isActive ? "active" : "")}>
+                    <NavLink
+                        to="/"
+                        end
+                        className={({ isActive }) => (isActive ? styles.active : "")}
+                    >
                         TRANG CHỦ
                     </NavLink>
 
                     {!isLoggedIn && (
                         <>
-                            <NavLink to="/hoi-dap" className={({ isActive }) => (isActive ? "active" : "")}>
+                            <NavLink to="/hoi-dap" className={({ isActive }) => (isActive ? styles.active : "")}>
                                 HỎI – ĐÁP
                             </NavLink>
-                            <NavLink to="/lien-he" className={({ isActive }) => (isActive ? "active" : "")}>
+                            <NavLink to="/lien-he" className={({ isActive }) => (isActive ? styles.active : "")}>
                                 LIÊN HỆ
                             </NavLink>
                         </>
@@ -64,35 +71,45 @@ export default function Header({ isLoggedIn, userInfo, handleLogout, userRole })
 
                     {isLoggedIn &&
                         menuByRole[userRole]?.map(({ to, label }) => (
-                            <NavLink key={to} to={to} className={({ isActive }) => (isActive ? "active" : "")}>
+                            <NavLink key={to} to={to} className={({ isActive }) => (isActive ? styles.active : "")}>
                                 {label}
                             </NavLink>
                         ))}
 
                     {!isLoggedIn ? (
-                          <>
-                            <NavLink to="/login">ĐĂNG NHẬP</NavLink>
-                            <NavLink to="/register" className="register-button-nav">
-                            ĐĂNG KÝ
+                        <>
+                            <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : "")}>
+                                ĐĂNG NHẬP
+                            </NavLink>
+                            <NavLink
+                                to="/register"
+                                className={({ isActive }) => (isActive ? `${styles.active} ${styles.registerButtonNav}` : styles.registerButtonNav)}
+                            >
+                                ĐĂNG KÝ
                             </NavLink>
                         </>
                     ) : (
-                        <div className="user-dropdown" ref={dropdownRef}>
-                            <div className="user-info" onClick={() => setShowDropdown(!showDropdown)}>
-                                <div className="user-circle">
-                                    {userInfo.full_name.split(" ").map((word) => word[0]).join("").slice(0, 2).toUpperCase()}
+                        <div className={styles.userDropdown} ref={dropdownRef}>
+                            <div className={styles.userInfo} onClick={() => setShowDropdown(!showDropdown)}>
+                                <div className={styles.userCircle}>
+                                    {userInfo.full_name
+                                        .split(" ")
+                                        .map((word) => word[0])
+                                        .join("")
+                                        .slice(0, 2)
+                                        .toUpperCase()}
                                 </div>
-                                <span className="user-name">{userInfo.full_name}</span>
-                                <span className="dropdown-arrow">▾</span>
+                                <span className={styles.userName}>{userInfo.full_name}</span>
+                                <span className={styles.dropdownArrow}>▾</span>
                             </div>
-                            {showDropdown && (
-                                <div className="dropdown-menu new-style">
-                                    <button className="dropdown-item">Thông tin cá nhân</button>
-                                    <button className="dropdown-item" onClick={handleLogout}>
-                                        Đăng xuất
-                                    </button>
-                                </div>
-                            )}
+                            <div
+                                className={`${styles.dropdownMenu} ${showDropdown ? styles.show : ""}`}
+                            >
+                                <button className={styles.dropdownItem}>Thông tin cá nhân</button>
+                                <button className={styles.dropdownItem} onClick={handleLogout}>
+                                    Đăng xuất
+                                </button>
+                            </div>
                         </div>
                     )}
                 </nav>

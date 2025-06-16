@@ -61,6 +61,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          {/* Các trang chung */}
           <Route path="/hoi-dap" element={<FaqPage />} />
           <Route path="/lien-he" element={<ContactPage />} />
           <Route path="/register" element={<Register />} />
