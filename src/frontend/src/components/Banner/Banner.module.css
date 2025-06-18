@@ -1,0 +1,105 @@
+/* src/frontend/src/components/Banner/Banner.module.css */
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Sửa: Đường dẫn ảnh tương đối với file CSS */
+    background: url('../../assets/images/bhead.jpg') no-repeat center center/cover;
+    height: 350px;
+    position: relative;
+    color: #fff;
+    text-align: center;
+    /* Đảm bảo vùng chứa không che popup - đã chuyển xuống cuối */
+    overflow: visible !important;
+    position: static !important;
+}
+
+.dateSearchBox {
+    /* Đổi tên class từ .date-search-box sang camelCase để dùng trong JS dễ hơn */
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 36px;
+    text-align: left;
+    color: #222;
+    min-width: 100px;
+    /* tăng chiều rộng */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+    /* Đảm bảo vùng chứa không che popup - đã chuyển xuống cuối */
+    overflow: visible !important;
+    position: static !important;
+}
+
+.dateLabel {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+.dateIcon {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.dateInputGroup {
+    display: flex;
+    align-items: center;
+
+    /* Đảm bảo vùng chứa không che popup - đã chuyển xuống cuối */
+    overflow: visible !important;
+    position: static !important;
+}
+
+.dateInput {
+    padding: 14px 18px;
+    border: 1px solid #cfd8dc;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 210px;
+    /* tăng chiều rộng */
+}
+
+.dateSeparator {
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.dateSearchBtn {
+    background: #4285f4;
+    color: #fff;
+    border: none;
+    padding: 14px 18px;
+    /* Đồng bộ với .date-input */
+    border-radius: 8px;
+    /* Hoặc giống input */
+    font-size: 1.15rem;
+    /* Đồng bộ với .date-input */
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: background 0.2s;
+    white-space: nowrap;
+    /* Tránh chữ xuống dòng */
+}
+
+.dateSearchBtn:hover {
+    background: #3367d6;
+}
+
+/* Các style cho React-datepicker, giữ nguyên tên class vì chúng là của thư viện */
+.customDatepickerPopper {
+    z-index: 9999 !important;
+    margin-top: 4px !important;
+}
+
+.customDatepickerCalendar {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.customDatepickerWrapper {
+    width: 100%;
+}

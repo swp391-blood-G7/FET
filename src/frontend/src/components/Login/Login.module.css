@@ -1,0 +1,97 @@
+/* ==== Layout tổng thể ==== */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+    padding: 20px;
+    background: linear-gradient(135deg, #f3f4f6, #e2e8f0);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==== Form login ==== */
+.login-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #222;
+    font-weight: bold;
+}
+
+/* ==== Nhóm input + label ==== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ==== Bọc icon + input ==== */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* ==== Icon trong ô nhập ==== */
+.input-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 18px;
+    color: #999;
+    pointer-events: none;
+    padding-bottom: 2px;
+}
+
+/* ==== Input ==== */
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 16px;
+    padding-left: 42px;
+    /* chừa khoảng cho icon */
+    height: 44px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    border-color: #d9534f;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.2);
+}
+
+/* ==== Nút đăng nhập ==== */
+.btn-login {
+    background-color: #d9534f;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: #c9302c;
+}

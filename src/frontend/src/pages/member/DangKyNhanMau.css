@@ -1,0 +1,169 @@
+/* Reset cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Title */
+.title {
+  text-align: center;
+  color: #e53935;
+  font-size: 28px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #d63384;
+  padding-bottom: 10px;
+}
+
+/* Content */
+.content {
+  margin-bottom: 30px;
+}
+
+/* Section */
+.section {
+  margin-bottom: 25px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.section-title {
+  color: #555;
+  font-size: 20px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+/* Info list */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-row {
+  display: flex;
+  padding: 8px 0;
+  border-bottom: 1px dotted #ddd;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row.important {
+  background-color: #fff3cd;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ffc107;
+}
+
+.label {
+  font-weight: bold;
+  min-width: 150px;
+  color: #666;
+}
+
+.value {
+  flex: 1;
+  color: #333;
+}
+
+/* Buttons */
+.buttons {
+  text-align: center;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-cancel {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.btn-primary {
+  background-color: #d63384;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #b02a5b;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+}
+
+.btn-cancel {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .label {
+    min-width: auto;
+    font-size: 14px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-cancel {
+    width: 100%;
+    max-width: 200px;
+  }
+}

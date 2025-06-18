@@ -1,0 +1,322 @@
+/* Reset cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Container chính */
+.lichsu-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  min-height: 100vh;
+}
+
+/* Title */
+.lichsu-title {
+  text-align: center;
+  color: #dc3545;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.lichsu-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #dc3545, #e91e63);
+  border-radius: 2px;
+}
+
+/* List container */
+.lichsu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Item container */
+.lichsu-item {
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  position: relative;
+  overflow: hidden;
+}
+
+.lichsu-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, #dc3545, #e91e63);
+}
+
+/* Icon section */
+.lichsu-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  margin-right: 20px;
+}
+
+.lichsu-icon img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 2px 4px rgba(220, 53, 69, 0.3));
+}
+
+.lichsu-icon span {
+  font-size: 13px;
+  color: #6c757d;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Content section */
+.lichsu-content {
+  flex: 1;
+}
+
+/* Header */
+.lichsu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.lichsu-diaDiem {
+  color: #212529;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 5px;
+}
+
+.lichsu-mota {
+  color: #6c757d;
+  font-weight: 400;
+  font-size: 15px;
+  font-style: italic;
+}
+
+.lichsu-status {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* Body */
+.lichsu-body {
+  margin-bottom: 20px;
+}
+
+.lichsu-body p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #495057;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.lichsu-body i {
+  color: #dc3545;
+  margin-right: 12px;
+  width: 18px;
+  font-size: 16px;
+}
+
+/* Footer */
+.lichsu-footer {
+  text-align: right;
+  border-top: 1px solid #f1f3f4;
+  padding-top: 15px;
+}
+
+.lichsu-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.lichsu-link:hover {
+  background-color: #e3f2fd;
+  color: #0056b3;
+  text-decoration: none;
+}
+
+/* Trạng thái đã xóa */
+.lichsu-item:has(.lichsu-status) {
+  opacity: 0.75;
+  background-color: #f8f9fa;
+}
+
+.lichsu-item:has(.lichsu-status)::before {
+  background: linear-gradient(180deg, #6c757d, #495057);
+}
+
+.lichsu-item:has(.lichsu-status) .lichsu-diaDiem {
+  color: #6c757d;
+}
+
+.lichsu-item:has(.lichsu-status) .lichsu-body p {
+  color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lichsu-container {
+    padding: 15px;
+  }
+
+  .lichsu-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .lichsu-item {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .lichsu-icon {
+    flex-direction: row;
+    justify-content: flex-start;
+    min-width: auto;
+    margin-right: 0;
+    margin-bottom: 15px;
+    gap: 12px;
+  }
+
+  .lichsu-icon img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0;
+  }
+
+  .lichsu-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .lichsu-diaDiem {
+    font-size: 18px;
+  }
+
+  .lichsu-footer {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .lichsu-container {
+    padding: 10px;
+  }
+
+  .lichsu-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .lichsu-item {
+    padding: 15px;
+  }
+
+  .lichsu-diaDiem {
+    font-size: 16px;
+  }
+
+  .lichsu-mota {
+    font-size: 14px;
+  }
+
+  .lichsu-body p {
+    font-size: 14px;
+  }
+
+  .lichsu-status {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+}
+
+/* Animation cho hover */
+.lichsu-item {
+  transition: all 0.3s ease;
+}
+
+.lichsu-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.lichsu-item:hover::before {
+  width: 8px;
+}
+
+/* Loading animation nếu cần */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lichsu-item {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.lichsu-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.lichsu-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.lichsu-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.lichsu-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.lichsu-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
