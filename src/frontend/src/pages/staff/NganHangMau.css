@@ -1,0 +1,54 @@
+.container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #d63031;
+}
+
+.blood-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.blood-table thead {
+  background-color: #d63031;
+  color: #fff;
+}
+
+.blood-table th,
+.blood-table td {
+  padding: 14px 16px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.blood-table tbody tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.blood-table tbody tr:hover {
+  background-color: #ffeaea;
+}
+
+.blood-table td.status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.blood-table td.status.available {
+  color: green;
+}
+
+.blood-table td.status.expired {
+  color: red;
+}

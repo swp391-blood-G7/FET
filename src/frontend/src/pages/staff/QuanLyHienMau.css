@@ -1,0 +1,24 @@
+.donor-list-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.donor-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.donor-table th, .donor-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.donor-table th {
+  background-color: #f0f0f0;
+}

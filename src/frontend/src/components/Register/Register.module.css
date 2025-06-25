@@ -1,0 +1,149 @@
+.registerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 16px;
+  background: linear-gradient(to bottom right, #e3f2fd, #fce4ec);
+}
+
+.registerForm {
+  background: #fff;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+.title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.inputWithIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  left: 12px;
+  color: #607d8b;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fdfdfd;
+  height: 42px;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.textarea {
+  height: auto;
+  min-height: 60px;
+  max-height: 100px;
+  resize: vertical;
+}
+
+.select {
+  height: 42px;
+  padding-right: 24px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.registerButton,
+.resetButton {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registerButton {
+  flex: 2;
+  background-color: #1976d2;
+  color: white;
+}
+
+.registerButton:hover {
+  background-color: #1565c0;
+  transform: translateY(-1px);
+}
+
+.resetButton {
+  flex: 1;
+  background-color: #e53935;
+  color: white;
+}
+
+.resetButton:hover {
+  background-color: #c62828;
+  transform: translateY(-1px);
+}
+
+.errorMessage {
+  color: #e53935;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .registerForm {
+    padding: 24px;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .buttonGroup {
+    flex-direction: column;
+  }
+
+  .registerButton,
+  .resetButton {
+    width: 100%;
+  }
+}
